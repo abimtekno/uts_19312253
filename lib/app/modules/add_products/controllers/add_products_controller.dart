@@ -5,36 +5,52 @@ import 'package:get/get.dart';
 class AddProductsController extends GetxController {
   FirebaseFirestore firestore = FirebaseFirestore.instance;
 
-  late TextEditingController cNama;
-  late TextEditingController cHarga;
+  late TextEditingController cNPM;
+  late TextEditingController cNAMA;
+  late TextEditingController cALAMAT;
+  late TextEditingController cPS;
+  late TextEditingController cJK;
 
   @override
   void onInit() {
-    cNama = TextEditingController();
-    cHarga = TextEditingController();
+    cNPM = TextEditingController();
+    cNAMA = TextEditingController();
+    cALAMAT = TextEditingController();
+    cPS = TextEditingController();
+    cJK = TextEditingController();
     super.onInit();
   }
 
   @override
   void onClose() {
-    cNama.dispose();
-    cHarga.dispose();
+    cNPM.dispose();
+    cNAMA.dispose();
+    cALAMAT.dispose();
+    cPS.dispose();
+    cJK.dispose();
     super.onClose();
   }
 
-  void addProduct(String nama, String harga) async {
-    CollectionReference products = firestore.collection("products");
+  void addProduct(String npm, String nama, String alamat, String jk,
+      String program_studi) async {
+    CollectionReference products = firestore.collection("mahasiswa");
     try {
       products.add({
-        "name": nama,
-        "price": harga,
+        "npm": npm,
+        "nama": nama,
+        "alamat": alamat,
+        "program_studi": program_studi,
+        "jk": jk,
       });
       Get.defaultDialog(
           title: "Berhasil",
           middleText: "Data berhasil diinput!",
           onConfirm: () {
-            cNama.clear();
-            cHarga.clear();
+            cNPM.clear();
+            cNAMA.clear();
+            cALAMAT.clear();
+            cPS.clear();
+            cJK.clear();
             Get.back();
             Get.back();
           });

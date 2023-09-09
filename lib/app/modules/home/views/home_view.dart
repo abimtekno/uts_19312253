@@ -39,8 +39,17 @@ class HomeView extends GetView<HomeController> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Home'),
+        title: Text('HOME'),
         centerTitle: true,
+        backgroundColor: Colors.orange, // Set the background color to orange
+        leading: Padding(
+          padding: const EdgeInsets.all(8.0),
+          child: Image.asset(
+            'assets/uti.png', // Replace with your image path
+            width: 50, // Set the width as needed
+            height: 50, // Set the height as needed
+          ),
+        ),
         actions: [
           IconButton(
             onPressed: () => cAuth.logout(),
@@ -63,9 +72,14 @@ class HomeView extends GetView<HomeController> {
                   backgroundColor: Colors.white,
                 ),
                 title: Text(
-                    "${(listAllDocs[index].data() as Map<String, dynamic>)["name"]}"),
-                subtitle: Text(
-                    "Rp${(listAllDocs[index].data() as Map<String, dynamic>)["price"]}"),
+                    "${(listAllDocs[index].data() as Map<String, dynamic>)["npm"]}"),
+                subtitle: Text("Nama: ${(listAllDocs[index].data() as Map<String, dynamic>)["nama"]}" +
+                    "\n" +
+                    "Alamat: ${(listAllDocs[index].data() as Map<String, dynamic>)["alamat"]}" +
+                    "\n" +
+                    "Program Study: ${(listAllDocs[index].data() as Map<String, dynamic>)["program_studi"]}" +
+                    "\n" +
+                    "Jenis Kelamin: ${(listAllDocs[index].data() as Map<String, dynamic>)["jk"]}"),
                 trailing: IconButton(
                   onPressed: () => showOption(listAllDocs[index].id),
                   icon: Icon(Icons.more_vert),
@@ -83,6 +97,7 @@ class HomeView extends GetView<HomeController> {
       floatingActionButton: FloatingActionButton(
         onPressed: () => Get.toNamed(Routes.ADD_PRODUCTS),
         child: Icon(Icons.add),
+        backgroundColor: Colors.orange, // Set the background color to orange
       ),
     );
   }

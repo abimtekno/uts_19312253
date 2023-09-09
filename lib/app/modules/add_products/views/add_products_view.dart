@@ -10,18 +10,27 @@ class AddProductsView extends GetView<AddProductsController> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Tambah Produk'),
+        title: Text('TAMBAH MAHASISWA'),
         centerTitle: true,
+        backgroundColor: Colors.orange, // Set the background color to orange
+        leading: Padding(
+          padding: const EdgeInsets.all(8.0),
+          child: Image.asset(
+            'assets/uti.png', // Replace with your image path
+            width: 50, // Set the width as needed
+            height: 50, // Set the height as needed
+          ),
+        ),
       ),
       body: Container(
         padding: EdgeInsets.all(40),
         child: ListView(
           children: [
             TextField(
-              controller: controller.cNama,
+              controller: controller.cNPM,
               decoration: InputDecoration(
-                  hintText: "Name",
-                  labelText: "Name",
+                  hintText: "NPM",
+                  labelText: "NPM",
                   border: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(30),
                   )),
@@ -30,10 +39,46 @@ class AddProductsView extends GetView<AddProductsController> {
               height: 20,
             ),
             TextField(
-              controller: controller.cHarga,
+              controller: controller.cNAMA,
               decoration: InputDecoration(
-                  hintText: "Price",
-                  labelText: "Price",
+                  hintText: "NAMA",
+                  labelText: "NAMA",
+                  border: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(30),
+                  )),
+            ),
+            SizedBox(
+              height: 20,
+            ),
+            TextField(
+              controller: controller.cALAMAT,
+              decoration: InputDecoration(
+                  hintText: "ALAMAT",
+                  labelText: "ALAMAT",
+                  border: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(30),
+                  )),
+            ),
+            SizedBox(
+              height: 20,
+            ),
+            TextField(
+              controller: controller.cJK,
+              decoration: InputDecoration(
+                  hintText: "JENIS KELAMIN",
+                  labelText: "JENIS KELAMIN",
+                  border: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(30),
+                  )),
+            ),
+            SizedBox(
+              height: 20,
+            ),
+            TextField(
+              controller: controller.cPS,
+              decoration: InputDecoration(
+                  hintText: "PROGRAM STUDI",
+                  labelText: "PROGRAM STUDI",
                   border: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(30),
                   )),
@@ -43,12 +88,16 @@ class AddProductsView extends GetView<AddProductsController> {
             ),
             ElevatedButton(
               onPressed: () => controller.addProduct(
-                controller.cNama.text,
-                controller.cHarga.text,
+                controller.cNPM.text,
+                controller.cNAMA.text,
+                controller.cALAMAT.text,
+                controller.cJK.text,
+                controller.cPS.text,
               ),
               child: Text("SUBMIT"),
               style: ButtonStyle(
-                backgroundColor: MaterialStateProperty.all<Color>(Colors.blue),
+                backgroundColor:
+                    MaterialStateProperty.all<Color>(Colors.orange),
                 shape: MaterialStateProperty.all<RoundedRectangleBorder>(
                   RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(30.0),

@@ -5,17 +5,17 @@ class HomeController extends GetxController {
   FirebaseFirestore firestore = FirebaseFirestore.instance;
 
   Future<QuerySnapshot<Object?>> GetData() async {
-    CollectionReference products = firestore.collection('products');
+    CollectionReference products = firestore.collection('mahasiswa');
     return products.get();
   }
 
   Stream<QuerySnapshot<Object?>> streamData() {
-    CollectionReference products = firestore.collection('products');
+    CollectionReference products = firestore.collection('mahasiswa');
     return products.snapshots();
   }
 
   void deleteProduct(String doc) async {
-    CollectionReference products = firestore.collection("products");
+    CollectionReference products = firestore.collection("mahasiswa");
     try {
       products.doc(doc).delete();
       Get.back();

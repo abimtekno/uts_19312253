@@ -3,44 +3,60 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 class UpdateProductController extends GetxController {
-  late TextEditingController cNama;
-  late TextEditingController cHarga;
+  late TextEditingController cNPM;
+  late TextEditingController cNAMA;
+  late TextEditingController cALAMAT;
+  late TextEditingController cPS;
+  late TextEditingController cJK;
 
   FirebaseFirestore firestore = FirebaseFirestore.instance;
 
   Future<DocumentSnapshot<Object?>> getData(String id) async {
-    DocumentReference docRef = firestore.collection("products").doc(id);
+    DocumentReference docRef = firestore.collection("mahasiswa").doc(id);
     return docRef.get();
   }
 
   @override
   void onInit() {
     // TODO: implement onInit
-    cNama = TextEditingController();
-    cHarga = TextEditingController();
+    cNPM = TextEditingController();
+    cNAMA = TextEditingController();
+    cALAMAT = TextEditingController();
+    cPS = TextEditingController();
+    cJK = TextEditingController();
     super.onInit();
   }
 
   @override
   void onClose() {
     super.onClose();
-    cNama.dispose();
-    cHarga.dispose();
+    cNPM.dispose();
+    cNAMA.dispose();
+    cALAMAT.dispose();
+    cPS.dispose();
+    cJK.dispose();
   }
 
-  void updateProduct(String nama, String harga, String id) {
-    CollectionReference products = firestore.collection("products");
+  void updateProduct(String npm, String nama, String alamat,
+      String program_studi, String jk, String id) {
+    CollectionReference products = firestore.collection("mahasiswa");
     try {
       products.doc(id).update({
-        "name": nama,
-        "price": harga,
+        "npm": npm,
+        "nama": nama,
+        "alamat": alamat,
+        "program_studi": program_studi,
+        "jk": jk,
       });
       Get.defaultDialog(
           title: "Berhasil",
           middleText: "Data berhasil diedit!",
           onConfirm: () {
-            cNama.clear();
-            cHarga.clear();
+            cNPM.clear();
+            cNAMA.clear();
+            cALAMAT.clear();
+            cPS.clear();
+            cJK.clear();
             Get.back();
             Get.back();
           });

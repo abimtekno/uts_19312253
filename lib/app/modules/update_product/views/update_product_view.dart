@@ -11,25 +11,37 @@ class UpdateProductView extends GetView<UpdateProductController> {
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
-          title: const Text('Update Product'),
+          title: Text('UPDATE MAHASISWA'),
           centerTitle: true,
+          backgroundColor: Colors.orange, // Set the background color to orange
+          leading: Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: Image.asset(
+              'assets/uti.png', // Replace with your image path
+              width: 50, // Set the width as needed
+              height: 50, // Set the height as needed
+            ),
+          ),
         ),
         body: FutureBuilder<DocumentSnapshot<Object?>>(
           future: controller.getData(Get.arguments),
           builder: (context, snapshot) {
             if (snapshot.connectionState == ConnectionState.done) {
               var data = snapshot.data!.data() as Map<String, dynamic>;
-              controller.cNama.text = data['name'];
-              controller.cHarga.text = data['price'];
+              controller.cNPM.text = data['npm'];
+              controller.cNAMA.text = data['nama'];
+              controller.cALAMAT.text = data['alamat'];
+              controller.cJK.text = data['jk'];
+              controller.cPS.text = data['program_studi'];
               return Container(
                 padding: EdgeInsets.all(40),
                 child: ListView(
                   children: [
                     TextField(
-                      controller: controller.cNama,
+                      controller: controller.cNPM,
                       decoration: InputDecoration(
-                          hintText: "Name",
-                          labelText: "Name",
+                          hintText: "NPM",
+                          labelText: "NPM",
                           border: OutlineInputBorder(
                             borderRadius: BorderRadius.circular(30),
                           )),
@@ -38,10 +50,46 @@ class UpdateProductView extends GetView<UpdateProductController> {
                       height: 20,
                     ),
                     TextField(
-                      controller: controller.cHarga,
+                      controller: controller.cNAMA,
                       decoration: InputDecoration(
-                          hintText: "Price",
-                          labelText: "Price",
+                          hintText: "NAMA",
+                          labelText: "NAMA",
+                          border: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(30),
+                          )),
+                    ),
+                    SizedBox(
+                      height: 20,
+                    ),
+                    TextField(
+                      controller: controller.cALAMAT,
+                      decoration: InputDecoration(
+                          hintText: "ALAMAT",
+                          labelText: "ALAMAT",
+                          border: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(30),
+                          )),
+                    ),
+                    SizedBox(
+                      height: 20,
+                    ),
+                    TextField(
+                      controller: controller.cJK,
+                      decoration: InputDecoration(
+                          hintText: "JENIS KELAMIN",
+                          labelText: "JENIS KELAMIN",
+                          border: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(30),
+                          )),
+                    ),
+                    SizedBox(
+                      height: 20,
+                    ),
+                    TextField(
+                      controller: controller.cPS,
+                      decoration: InputDecoration(
+                          hintText: "PROGRAM STUDI",
+                          labelText: "PROGRAM STUDI",
                           border: OutlineInputBorder(
                             borderRadius: BorderRadius.circular(30),
                           )),
@@ -51,14 +99,17 @@ class UpdateProductView extends GetView<UpdateProductController> {
                     ),
                     ElevatedButton(
                       onPressed: () => controller.updateProduct(
-                        controller.cNama.text,
-                        controller.cHarga.text,
+                        controller.cNPM.text,
+                        controller.cNAMA.text,
+                        controller.cALAMAT.text,
+                        controller.cJK.text,
+                        controller.cPS.text,
                         Get.arguments,
                       ),
                       child: Text("Edit"),
                       style: ButtonStyle(
                         backgroundColor:
-                            MaterialStateProperty.all<Color>(Colors.blue),
+                            MaterialStateProperty.all<Color>(Colors.orange),
                         shape:
                             MaterialStateProperty.all<RoundedRectangleBorder>(
                           RoundedRectangleBorder(

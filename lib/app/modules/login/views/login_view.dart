@@ -14,13 +14,27 @@ class LoginView extends GetView<LoginController> {
       appBar: AppBar(
         title: Text('Login'),
         centerTitle: true,
+        backgroundColor: Colors.orange, // Set the background color to orange
+        leading: Padding(
+          padding: const EdgeInsets.all(8.0),
+          child: Image.asset(
+            'assets/uti.png', // Replace with your image path
+            width: 50, // Set the width as needed
+            height: 50, // Set the height as needed
+          ),
+        ),
       ),
       body: Container(
         padding: EdgeInsets.all(40),
         child: ListView(
           children: [
+            Image.asset(
+              'assets/uti.png',
+              height: 200,
+              width: 200,
+            ),
             SizedBox(
-              height: 160,
+              height: 50,
             ),
             TextField(
               controller: controller.cEmail,
@@ -61,7 +75,8 @@ class LoginView extends GetView<LoginController> {
               ),
               child: Text("LOGIN"),
               style: ButtonStyle(
-                backgroundColor: MaterialStateProperty.all<Color>(Colors.blue),
+                backgroundColor:
+                    MaterialStateProperty.all<Color>(Colors.orange),
                 shape: MaterialStateProperty.all<RoundedRectangleBorder>(
                   RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(30.0),
@@ -81,6 +96,21 @@ class LoginView extends GetView<LoginController> {
                   child: Text("Daftar Disini"),
                 ),
               ],
+            ),
+            SizedBox(
+              height: 20,
+            ),
+            ElevatedButton(
+              onPressed: () => controller.loginGoogle(),
+              child: Text("LOGIN WITH GOOGLE"),
+              style: ButtonStyle(
+                backgroundColor: MaterialStateProperty.all<Color>(Colors.red),
+                shape: MaterialStateProperty.all<RoundedRectangleBorder>(
+                  RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(30.0),
+                  ),
+                ),
+              ),
             ),
           ],
         ),
